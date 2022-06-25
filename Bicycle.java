@@ -29,31 +29,88 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */ 
 
-class Bicycle {
+public class Bicycle implements Comparable<Bicycle>{
+        
+     private int cadence;
+     private int gear;
+     private int speed;
+     private int price;
+         
+     public Bicycle() {
+          gear = 2;
+          cadence = 0;
+          speed = 0;
+          price = 0;
+      }
 
-    int cadence = 0;
-    int speed = 0;
-    int gear = 1;
+     public Bicycle(int startCadence, int startSpeed, int price) {
+          gear = 2;
+          cadence = startCadence;
+          speed = startSpeed;
+          this.price = price;
+      }
+     public Bicycle(int startCadence, int startSpeed, int startGear, int price) {
+         gear = startGear;
+         cadence = startCadence;
+         speed = startSpeed;
+         this.price = price;
+     }
+         
+     
+     public int getPrice() {
+          return price;
+     }
 
-    public void changeCadence(int newValue) {
+     public void setPrice(int price) {
+          this.price = price;
+     }
+
+     public int getCadence() {
+         return cadence;
+     }
+         
+     public void setCadence(int newValue) {
          cadence = newValue;
-    }
-
-    public void changeGear(int newValue) {
+     }
+         
+     public int getGear() {
+         return gear;
+     }
+         
+     public void setGear(int newValue) {
          gear = newValue;
-    }
+     }
+         
+     public int getSpeed() {
+         return speed;
+     }
+         
+     public void applyBrake(int decrement) {
+         speed -= decrement;
+     }
+         
+     public void speedUp(int increment) {
+         speed += increment;
+     }
 
-    public void speedUp(int increment) {
-         speed = speed + increment;   
-    }
+     @Override
+     public String toString() {
+          return "Bicycle [cadence=" + cadence + ", gear=" + gear + ", price=" + price + ", speed=" + speed + "]";
+     }
 
-    public void applyBrakes(int decrement) {
-         speed = speed - decrement;
-    }
+     @Override
+     public int compareTo(Bicycle o) {
+          if (this.price>o.getPrice()) {
+               return -1;
+          }
+          else if (this.price==o.getPrice()) {
+               return 0;
+          }
+          else {
+               return 1;
+          }
+     }
 
-    public void printStates() {
-         System.out.println("cadence:" +
-             cadence + " speed:" + 
-             speed + " gear:" + gear);
-    }
-}
+     
+ }
+
